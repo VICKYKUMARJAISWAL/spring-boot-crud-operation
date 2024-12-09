@@ -1,18 +1,17 @@
 #!/usr/bin/env bash
 
-echo "Building and Installing Maven Project"
+echo "Building Maven Project"
 set -x
 mvn clean package install -DskipTests
 set +x
 
 echo "Extracting Project Name and Version"
 set -x
-NAME=$(mvn -q -DforceStdout help:evaluate -Dexpression=project.name | tr -d '\033')
-VERSION=$(mvn -q -DforceStdout help:evaluate -Dexpression=project.version | tr -d '\033')
+NAME=$(mvn -q -DforceStdout help:evaluate -Dexpression=project.name | sed -r "s/\x1B\[[0-9;]*[mK]//g")
+VERSION=$(mvn -q -DforceStdout help:evaluate -Dexpression=project.version | sed -r "s/\x1B\[[0-9;]*[mK]//g")
 set +x
 
 echo "Checking Generated JAR File"
-set -x
 JAR_FILE="target/${NAME}-${VERSION}.jar"
 if [ -f "$JAR_FILE" ]; then
     echo "Found JAR: $JAR_FILE"
