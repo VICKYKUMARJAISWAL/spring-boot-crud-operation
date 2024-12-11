@@ -15,7 +15,7 @@ echo "Checking Generated JAR File"
 JAR_FILE="target/${NAME}-${VERSION}.jar"
 if [ -f "$JAR_FILE" ]; then
     echo "Found JAR: $JAR_FILE"
-    java -jar "$JAR_FILE"
+   // java -jar "$JAR_FILE"
 else
     echo "Error: JAR file not found at $JAR_FILE"
     exit 1
