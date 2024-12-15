@@ -22,10 +22,9 @@ pipeline {
                 sh './jenkins/scripts/deliver.sh'
             }
         }
-	stage('Complete') {
+		 stage('Complete') {
             steps {
-		echo 'Jobs are completed'
-				                
+				echo 'This job is from feature branch!'
             }
         }
     }
